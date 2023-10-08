@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <span>Edit Company Info</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <div class="controles-container">
+    <input type="hidden" formControlName="_id">
+    <input type="hidden" formControlName="__v">
+
+        <mat-form-field appearance="fill" style="width: 48%; float: left;">
+          <mat-label for="company_name" >Company Name</mat-label>
+          <input matInput type="text" formControlName="company_name" id="company_name" placeholder="Company Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: right;">
+          <mat-label for="company_logo" >Company Logo (base64)</mat-label>
+          <input matInput type="text" formControlName="company_logo" id="company_logo" placeholder="Company Logo">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: right;">
+          <mat-label for="company_color" >Company Color</mat-label>
+          <input matInput type="text" formControlName="company_color" id="company_color" placeholder="Company Color">
+        </mat-form-field>
+
+      <div class="button-row">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+        <button mat-stroked-button color="warn" (click)="onClear()">Clear</button>
+      </div>
+
+  </div>
+
+</form>
+
+
+

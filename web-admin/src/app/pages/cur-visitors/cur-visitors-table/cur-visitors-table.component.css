@@ -1,0 +1,72 @@
+.example-container {
+  padding-top: 0%;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+.yes {
+  color: #0bda0b;
+}
+
+.no {
+  color: red;
+}
+
+th.mat-column-first_name, td.mat-column-first_name {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-last_name, td.mat-column-last_name {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-email, td.mat-column-email {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-id_number, td.mat-column-id_number {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-person_visited, td.mat-column-person_visited {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-sign_in_time, td.mat-column-sign_in_time {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-date, td.mat-column-date {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-actions, td.mat-column-actions {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+td:nth-child(6)  {white-space: nowrap;}
+
+th:nth-child(1)  {white-space: nowrap;}
+
+th:nth-child(4)  {white-space: nowrap;}
+
+th:nth-child(5)  {white-space: nowrap;}
+
+th:nth-child(6)  {white-space: nowrap;}
+
+th:nth-child(7)  {white-space: nowrap;}
+
+th:nth-child(8)  {white-space: nowrap;}

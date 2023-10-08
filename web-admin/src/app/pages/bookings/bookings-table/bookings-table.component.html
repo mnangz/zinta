@@ -1,0 +1,223 @@
+
+
+<div class="example-container mat-elevation-z8">
+
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-3">
+      <button mat-raised-button  *ngIf="elementType === 'canvas'" (click)="processBarcode()" style="width:100%">
+        <mat-icon>add</mat-icon>Make a Booking
+      </button>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <button mat-raised-button [matMenuTriggerFor]="menu" style="width:100%">
+        <mat-icon>file_download</mat-icon>Export As
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="exportDirective.exportTable('csv', {fileName: 'Bookings'})">
+          <span>CSV</span>
+        </button>
+        <button mat-menu-item (click)="exportDirective.exportTable('xls', {fileName: 'Bookings'})">
+          <span>Excel</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <button mat-raised-button  (click)="refresh()" style="width:100%">
+        <mat-icon>refresh</mat-icon>Refresh
+      </button>
+    </div>
+    <div class="col-md-7">
+      <!-- <div class="row">
+        <div class="date-block__list col-md-5">
+          <mat-form-field style="float: left;">
+            <input matInput
+              [matDatepicker]="fromDate"
+              placeholder="From Date"
+              [ngModel]="fromDate">
+            <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+            <mat-datepicker #fromDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="date-block__list col-md-5">
+          <mat-form-field>
+            <input matInput
+              [matDatepicker]="toDate"
+              placeholder="To Date"
+              [ngModel]="toDate">
+            <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+            <mat-datepicker #toDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2">
+          <button style="width: 9%;" mat-button color="primary" class="primary" (click)="applyDateFilter()">Filter</button>
+        </div>
+      </div> -->
+
+    </div>
+
+  </div>
+
+  <table mat-table matSort #table matTableExporter [dataSource]="dataSource" #filteredTable [exporter]= "customExporter"
+  #exportDirective="matTableExporter" style="margin-top: 30px;" [hiddenColumns]="[12]">
+
+    <ng-container matColumnDef="booking_ref_no" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Booking #</th>
+      <td mat-cell *matCellDef="let row">{{row.booking_ref_no}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="first_name" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>First Name</th>
+      <td mat-cell *matCellDef="let row">{{row.first_name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="last_name" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Last Name</th>
+      <td mat-cell *matCellDef="let row">{{row.last_name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="visit_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Booking Date</th>
+      <td mat-cell *matCellDef="let row">{{row.visit_date | date: 'dd/MM/yyyy'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="mobile">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Mobile</th>
+      <td mat-cell *matCellDef="let row">{{row.mobile}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Email</th>
+      <td mat-cell *matCellDef="let row">{{row.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="company_name">
+      <th class="w-100" mat-header-cell *matHeaderCellDef mat-sort-header sticky>Company Name</th>
+      <td mat-cell *matCellDef="let row">{{row.company_name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Address</th>
+      <td mat-cell *matCellDef="let row">{{row.address}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Number</th>
+      <td mat-cell *matCellDef="let row">{{row.id_number}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="vehicle_reg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Vehicle Reg</th>
+      <td mat-cell *matCellDef="let row">{{row.vehicle_reg}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="purpose_of_visit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sticky>Purpose</th>
+      <td mat-cell *matCellDef="let row">{{row.purpose_of_visit}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="person_visited">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Person Visited</th>
+      <td mat-cell *matCellDef="let row">{{row.person_visited}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item disabled (click)="resend(row)">
+            <mat-icon small color="primary">send</mat-icon>
+            <span>Re-send Booking</span>
+          </button>
+          <button mat-menu-item (click)="onEdit(row)">
+            <mat-icon small color="primary">mode_edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item  (click)="onSignin(row)">
+            <mat-icon small color="primary">login</mat-icon>
+            <span>Sign In</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[10, 25, 50, 100, 250]">
+  </mat-paginator>
+</div>
+
+<div style="display: none;">
+  <ngx-barcode
+  [bc-element-type]="elementType"
+  [bc-value]="booking_ref_no"
+  [bc-text-align]="textAlign"
+  [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"
+  [bc-display-value]="true">
+  </ngx-barcode>
+</div>
+
+
+<!-- <div style="text-align: center; display: none;" *ngFor="let booking of booking">
+  <table id="booking" align="center" cellpadding="1" cellspacing="1" style="width:900px;">
+    <tbody>
+        <tr>
+            <td><br />
+            <img src="http://entrisec.com/Logo.png" style="height: auto; width: 400px;" /><br />
+            &nbsp;</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <table align="center" cellpadding="1" cellspacing="1" style="width:900px; background-color: #000;">
+    <tbody>
+        <tr>
+            <td>
+            <div><span style="font-size:26px;"><span style="color:#FFFFFF;"><span style="font-family:tahoma,geneva,sans-serif;">Booking for: {{booking.first_name}} {{booking.last_name}}<br />
+            <span style="font-size:20px;"><span style="font-size:18px;">Booking Date: {{booking.visit_date}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Visiting: {{booking.employee_visited}}</span></span></span></span></span><br />
+            &nbsp;</div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <br />
+  <span style="font-family:tahoma,geneva,sans-serif;">
+    Hi there, your booking to visit <strong>Conyx Technologies</strong> has been made. Please find below your booking reference number.
+  </span><br />
+  <br />
+  <br />
+  <span style="font-family:tahoma,geneva,sans-serif; font-size:28px;">
+    Booking Reference Number: {{this.booking.booking_ref_no}}
+  </span>​<br />
+  <br />
+  <img src="{{booking.barcode}}" style="height: auto; width: 500px;" />​<br />
+  <br />
+
+
+  <table align="center" cellpadding="1" cellspacing="1" style="width:900px; background-color: #000;">
+    <tbody>
+        <tr>
+            <td><br />
+            <span style="color:#FFFFFF;"><span style="font-family:tahoma,geneva,sans-serif;">Powered by </span></span><span style="font-family:tahoma,geneva,sans-serif;"><a href="http://www.entrisec.com"><span style="color:#FFFFFF;">Entrisec</span></a></span><br />
+            &nbsp;</td>
+        </tr>
+    </tbody>
+  </table>
+</div> -->

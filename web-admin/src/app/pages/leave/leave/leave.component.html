@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+    <span>{{service.form.controls['_id'].value?"Edit Employee":"New Employee"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <div class="controles-container">
+      <input type="hidden" formControlName="_id">
+      <input type="hidden" formControlName="__v">
+  
+          <!-- <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label for="employee" >Employee</mat-label>
+            <input matInput type="text" formControlName="employee" id="employee" placeholder="Employee Number">
+          </mat-form-field> -->
+
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label for="employee" >Employee</mat-label>
+            <select matNativeControl required formControlName="employee">
+              <option *ngFor="let employee of employee" value="{{employee.username}} - {{employee.first_name}} {{employee.last_name}}">{{employee.username}} - {{employee.first_name}} {{employee.last_name}}</option>
+            </select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label for="email" >Email</mat-label>
+            <input matInput type="text" formControlName="email" id="email" placeholder="Email">
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" style="width: 48%; float: left;">
+            <mat-label>Start Date</mat-label>
+            <input matInput required [matDatepicker]="picker" formControlName="start_date" id="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" style="width: 48%; float: right;">
+            <mat-label>End Date</mat-label>
+            <input matInput required [matDatepicker]="picker" formControlName="end_date" id="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+  
+        <div class="button-row" style="padding-top: 10px;">
+          <button mat-stroked-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+          <button mat-stroked-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+  
+    </div>
+  
+  </form>
+  

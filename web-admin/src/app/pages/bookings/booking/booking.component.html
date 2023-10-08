@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">
+  <span>{{service.form.controls['_id'].value?"Edit Booking":"Make a booking"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" *ngIf="booking_ref_no && barcode" class="normal-form" (submit)="onSubmit()">
+  <div class="controles-container" *ngFor="let ourCompany of ourCompany">
+    <input type="hidden" formControlName="_id">
+    <input type="hidden" formControlName="__v">
+    <input type="hidden" formControlName="date_booking_made">
+    <input type="hidden" formControlName="booking_ref_no" [(ngModel)]="booking_ref_no">
+    <input type="hidden" formControlName="barcode" [(ngModel)]="barcode">
+    <input type="hidden" formControlName="our_company_name" [(ngModel)]="ourCompany.company_name">
+    <input type="hidden" formControlName="our_company_logo" [(ngModel)]="ourCompany.company_logo">
+    <!-- <input type="hidden" formControlName="company" [(ngModel)]="company">
+    <input type="hidden" formControlName="booking_made_by" [(ngModel)]="booking_made_by"> -->
+
+    <mat-form-field appearance="fill" style="width: 49%; float: left;">
+      <mat-label for="first_name" >First Name</mat-label>
+      <input matInput required type="text" formControlName="first_name" id="first_name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 49%; float: right;">
+      <mat-label for="last_name" >Last Name</mat-label>
+      <input matInput required type="text" formControlName="last_name" id="last_name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 49%; float: left;">
+      <mat-label for="mobile" >Mobile Number (Optional)</mat-label>
+      <input matInput type="tel" formControlName="mobile" id="mobile">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 49%; float: right;">
+      <mat-label for="email" >Email (Optional)</mat-label>
+      <input matInput type="email" formControlName="email" id="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label for="company_name" >Company Name</mat-label>
+      <input matInput required type="text" formControlName="company_name" id="company_name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label for="address" >Address</mat-label>
+      <input matInput required type="text" formControlName="address" id="address">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 49%; float: left;">
+      <mat-label for="id_number" >ID Number</mat-label>
+      <input matInput required type="text" formControlName="id_number" id="id_number">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 49%; float: right;">
+      <mat-label for="vehicle_reg" >Vehicle Registration (Optional)</mat-label>
+      <input matInput type="text" formControlName="vehicle_reg" id="vehicle_reg">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label  for="purpose_of_visit">Purpose of visit</mat-label>
+      <select matNativeControl required formControlName="purpose_of_visit">
+        <option label="--select purpose--"></option>
+        <option value="Business">Business</option>
+        <option value="Personal">Personal</option>
+        <option value="Delivery">Delivery</option>
+        <option value="Work">Work</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 49%; float: left;">
+      <mat-label for="person_visited" >Person to be visited</mat-label>
+      <select matNativeControl required formControlName="person_visited">
+        <option *ngFor="let employee of employee" value="{{employee._id}}">{{employee.first_name}} {{employee.last_name}}</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 49%; float: right;">
+      <mat-label>Date of visit</mat-label>
+      <input matInput required [matDatepicker]="picker" formControlName="visit_date" id="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label for="notes" >Notes (If any)</mat-label>
+      <input matInput type="text" formControlName="notes" id="notes">
+    </mat-form-field>
+
+      <div class="button-row">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="service.form.invalid || disable">Make Booking</button>
+        <!-- <button mat-stroked-button color="warn" (click)="onClear()">Clear</button> -->
+      </div>
+
+  </div>
+
+</form>
+
+
+

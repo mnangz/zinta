@@ -1,0 +1,80 @@
+<mat-toolbar color="primary">
+  <span>{{service.form.controls['_id'].value?"Edit Employee":"New Employee"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <div class="controles-container">
+    <input type="hidden" formControlName="_id">
+    <input type="hidden" formControlName="__v">
+
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label for="username" >Employee Number</mat-label>
+          <input matInput type="text" formControlName="username" id="username" placeholder="Employee Number">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: left;">
+          <mat-label for="first_name" >First Name</mat-label>
+          <input matInput type="text" formControlName="first_name" id="first_name" placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 48%; float: right;">
+          <mat-label for="last_name" >Last Name</mat-label>
+          <input matInput type="text" formControlName="last_name" id="last_name" placeholder="Last Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: left;">
+          <mat-label for="email" >Email</mat-label>
+          <input matInput type="text" formControlName="email" id="email" placeholder="Email">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 48%; float: right;">
+          <mat-label for="position" >Position</mat-label>
+          <input matInput type="text" formControlName="position" id="position" placeholder="Position">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label  for="employment_type">Type of employment</mat-label>
+          <select matNativeControl required formControlName="employment_type">
+            <option label="--select--"></option>
+            <option value="Permanent">Permanent</option>
+            <option value="Contract">Contract</option>
+            <option value="Part">Part time</option>
+          </select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: left;">
+          <mat-label>Start Date</mat-label>
+          <input matInput required [matDatepicker]="picker" formControlName="start_date" id="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 48%; float: right;">
+          <mat-label>End Date</mat-label>
+          <input matInput required [matDatepicker]="picker" formControlName="end_date" id="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 100%; padding-bottom: 10px;">
+          <mat-label for="password">Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  type="{{service.form.controls['_id'].value}} ?'hidden':'password'" formControlName="password" id="password" placeholder="Password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col-md-4">
+            <mat-checkbox matInput type="checkbox" formControlName="isHR">isHR</mat-checkbox>
+          </div>
+        </div>
+
+
+      <div class="button-row" style="padding-top: 10px;">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+        <button mat-stroked-button color="warn" (click)="onClear()">Clear</button>
+      </div>
+
+  </div>
+
+</form>

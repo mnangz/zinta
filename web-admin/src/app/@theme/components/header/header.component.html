@@ -1,0 +1,25 @@
+<div class="header-container" *ngFor="let company of company">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()"><img src="{{company.company_logo}}" style="height: 50px;"></a>
+  </div>
+</div>
+
+<div class="header-container" style="text-align: center;">
+  <h4></h4>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
+      <nb-user [nbContextMenu]="userMenu"
+               [onlyPicture]="userPictureOnly"
+               [name]="user?.first_name"
+               [picture]="base64image">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

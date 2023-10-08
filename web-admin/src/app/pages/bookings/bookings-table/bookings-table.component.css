@@ -1,0 +1,86 @@
+.example-container {
+  padding-top: 0%;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+th.mat-column-booking_ref_no, td.mat-column-booking_ref_no {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-first_name, td.mat-column-first_name {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-last_name, td.mat-column-last_name {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-email, td.mat-column-email {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-mobile, td.mat-column-mobile {
+  padding-left: 24px;
+  padding-right: 15px;
+}
+
+th.mat-column-company_name, td.mat-column-company_name {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-address, td.mat-column-address {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-id_number, td.mat-column-id_number {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-vehicle_reg, td.mat-column-vehicle_reg {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-purpose_of_visit, td.mat-column-purpose_of_visit {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-person_visited, td.mat-column-person_visited {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th.mat-column-visit_date, td.mat-column-visit_date {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th:nth-child(1)  {white-space: nowrap;}
+
+th:nth-child(2)  {white-space: nowrap;}
+
+th:nth-child(8)  {white-space: nowrap;}
+
+th:nth-child(9)  {white-space: nowrap;}
+
+th:nth-child(12)  {white-space: nowrap;}
+
+td:nth-child(6)  {white-space: nowrap;}
+
+td:nth-child(7)  {white-space: nowrap;}
+
+td:nth-child(11)  {white-space: nowrap;}
